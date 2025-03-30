@@ -36,14 +36,18 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public boolean deleteUserById(long id) {
 		// TODO Auto-generated method stub
-		try {
-			Optional<User> user = getUserById(id);
-			userRepository.delete(user.get());
-			return true;
-		} catch (Exception e) {
-			// TODO: handle exception
-			return false;
+		Optional<User> user = getUserById(id);
+		if (user.isPresent()) {
+
+			try {
+				userRepository.delete(user.get());
+				return true;
+			} catch (Exception e) {
+				// TODO: handle exception
+				return false;
+			}
 		}
+		return false;
 	}
 
 }

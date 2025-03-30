@@ -16,7 +16,7 @@ import com.demo.UsersRestApi.model.User;
 import com.demo.UsersRestApi.service.UserService;
 
 @RestController
-@RequestMapping("api")
+@RequestMapping("api/users")
 public class UsersApi {
 
 	@Autowired
