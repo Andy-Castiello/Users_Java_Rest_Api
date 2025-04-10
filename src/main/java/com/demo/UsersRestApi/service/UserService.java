@@ -3,15 +3,15 @@ package com.demo.UsersRestApi.service;
 import java.util.ArrayList;
 import java.util.Optional;
 
-import com.demo.UsersRestApi.model.User;
+import com.demo.UsersRestApi.model.UserEntity;
 
 public interface UserService {
 
-	ArrayList<User> getAllUser();
+	ArrayList<UserEntity> getAllUser();
 
-	Optional<User> getUserById(long id);
+	Optional<UserEntity> getUserById(long id);
 
-	User saveUser(User user);
+	UserEntity saveUser(UserEntity userEntity);
 
 	boolean deleteUserById(long id);
 }

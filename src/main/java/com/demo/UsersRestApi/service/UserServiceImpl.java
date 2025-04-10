@@ -6,7 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.demo.UsersRestApi.model.User;
+import com.demo.UsersRestApi.model.UserEntity;
 import com.demo.UsersRestApi.repository.UserRepository;
 
 @Service
@@ -16,31 +16,31 @@ public class UserServiceImpl implements UserService {
 	UserRepository userRepository;
 
 	@Override
-	public ArrayList<User> getAllUser() {
+	public ArrayList<UserEntity> getAllUser() {
 		// TODO Auto-generated method stub
-		return (ArrayList<User>) userRepository.findAll();
+		return (ArrayList<UserEntity>) userRepository.findAll();
 	}
 
 	@Override
-	public Optional<User> getUserById(long id) {
+	public Optional<UserEntity> getUserById(long id) {
 		// TODO Auto-generated method stub
 		return userRepository.findById(id);
 	}
 
 	@Override
-	public User saveUser(User user) {
+	public UserEntity saveUser(UserEntity userEntity) {
 		// TODO Auto-generated method stub
-		return userRepository.save(user);
+		return userRepository.save(userEntity);
 	}
 
 	@Override
 	public boolean deleteUserById(long id) {
 		// TODO Auto-generated method stub
-		Optional<User> user = getUserById(id);
-		if (user.isPresent()) {
+		Optional<UserEntity> userEntity = getUserById(id);
+		if (userEntity.isPresent()) {
 
 			try {
-				userRepository.delete(user.get());
+				userRepository.delete(userEntity.get());
 				return true;
 			} catch (Exception e) {
 				// TODO: handle exception

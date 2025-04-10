@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.demo.UsersRestApi.model.Reservation;
-import com.demo.UsersRestApi.model.User;
+import com.demo.UsersRestApi.model.UserEntity;
 import com.demo.UsersRestApi.repository.ReservationRepository;
 import com.demo.UsersRestApi.repository.UserRepository;
 
@@ -27,10 +27,10 @@ public class ReservationServiceImpl implements ReservationService {
 	}
 
 	@Override
-	public ArrayList<Reservation> getReservationsByUser(User user) {
+	public ArrayList<Reservation> getReservationsByUser(UserEntity userEntity) {
 		// TODO Auto-generated method stub
 
-		return (ArrayList<Reservation>) user.getReservations();
+		return (ArrayList<Reservation>) userEntity.getReservations();
 
 	}
 

@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 import com.demo.UsersRestApi.model.Reservation;
-import com.demo.UsersRestApi.model.User;
+import com.demo.UsersRestApi.model.UserEntity;
 
 public interface ReservationService {
 
 	ArrayList<Reservation> getAllReservations();
 
-	ArrayList<Reservation> getReservationsByUser(User user);
+	ArrayList<Reservation> getReservationsByUser(UserEntity userEntity);
 
 	Optional<Reservation> getReservationById(long id);
 

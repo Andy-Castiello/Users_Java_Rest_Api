@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.demo.UsersRestApi.dto.SaveReservationRequest;
+import com.demo.UsersRestApi.dto.SaveReservationDto;
 import com.demo.UsersRestApi.model.Reservation;
-import com.demo.UsersRestApi.model.User;
+import com.demo.UsersRestApi.model.UserEntity;
 import com.demo.UsersRestApi.service.ReservationService;
 import com.demo.UsersRestApi.service.UserService;
 
@@ -45,10 +45,10 @@ public class ReservationApi {
 	@GetMapping("/findByUserId/{id}")
 	public ArrayList<Reservation> getReservationByUserId(@PathVariable("id") long id) {
 
-		Optional<User> user = userService.getUserById(id);
-		if (user.isPresent()) {
+		Optional<UserEntity> userEntity = userService.getUserById(id);
+		if (userEntity.isPresent()) {
 
-			return reservationService.getReservationsByUser(user.get());
+			return reservationService.getReservationsByUser(userEntity.get());
 
 		} else {
 
@@ -57,26 +57,26 @@ public class ReservationApi {
 	}
 
 	@PostMapping("/save")
-	public Reservation saveReservation(@RequestBody SaveReservationRequest saveReservationRequest) {
+	public Reservation saveReservation(@RequestBody SaveReservationDto saveReservationDto) {
 
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
 
-		LocalDateTime startDate = LocalDateTime.parse(saveReservationRequest.getStartDate(), formatter);
-		LocalDateTime endDate = LocalDateTime.parse(saveReservationRequest.getEndDate(), formatter);
+		LocalDateTime startDate = LocalDateTime.parse(saveReservationDto.getStartDate(), formatter);
+		LocalDateTime endDate = LocalDateTime.parse(saveReservationDto.getEndDate(), formatter);
 
-		Optional<User> user = userService.getUserById(saveReservationRequest.getUserId());
+		Optional<UserEntity> userEntity = userService.getUserById(saveReservationDto.getUserId());
 
-		if (user.isPresent()) {
+		if (userEntity.isPresent()) {
 
-			if (saveReservationRequest.getReservationNumber() >= 0) {
+			if (saveReservationDto.getReservationNumber() >= 0) {
 
-				Reservation reservation = new Reservation(saveReservationRequest.getReservationNumber(), startDate,
-						endDate, user.get());
+				Reservation reservation = new Reservation(saveReservationDto.getReservationNumber(), startDate,
+						endDate, userEntity.get());
 				return reservationService.saveReservation(reservation);
 
 			} else {
 
-				Reservation reservation = new Reservation(startDate, endDate, user.get());
+				Reservation reservation = new Reservation(startDate, endDate, userEntity.get());
 				return reservationService.saveReservation(reservation);
 
 			}

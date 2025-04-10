@@ -1,17 +1,17 @@
 package com.demo.UsersRestApi.dto;
 
-public class SaveReservationRequest {
+public class SaveReservationDto {
 
 	private long reservationNumber;
 	private String startDate;
 	private String endDate;
 	private long userId;
 
-	public SaveReservationRequest() {
+	public SaveReservationDto() {
 		super();
 	}
 
-	public SaveReservationRequest(String startDate, String endDate, long userId) {
+	public SaveReservationDto(String startDate, String endDate, long userId) {
 		super();
 		this.reservationNumber = -1;
 		this.startDate = startDate;
@@ -19,7 +19,7 @@ public class SaveReservationRequest {
 		this.userId = userId;
 	}
 
-	public SaveReservationRequest(long reservationNumber, String startDate, String endDate, long userId) {
+	public SaveReservationDto(long reservationNumber, String startDate, String endDate, long userId) {
 		super();
 		this.reservationNumber = reservationNumber;
 		this.startDate = startDate;

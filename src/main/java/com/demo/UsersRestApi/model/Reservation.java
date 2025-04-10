@@ -24,25 +24,25 @@ public class Reservation {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_user")
 	@JsonBackReference
-	private User user;
+	private UserEntity user;
 
 	public Reservation() {
 		super();
 	}
 
-	public Reservation(LocalDateTime startDate, LocalDateTime endDate, User user) {
+	public Reservation(LocalDateTime startDate, LocalDateTime endDate, UserEntity userEntity) {
 		super();
 		this.startDate = startDate;
 		this.endDate = endDate;
-		this.user = user;
+		this.user = userEntity;
 	}
 
-	public Reservation(long reservationNumber, LocalDateTime startDate, LocalDateTime endDate, User user) {
+	public Reservation(long reservationNumber, LocalDateTime startDate, LocalDateTime endDate, UserEntity userEntity) {
 		super();
 		this.reservationNumber = reservationNumber;
 		this.startDate = startDate;
 		this.endDate = endDate;
-		this.user = user;
+		this.user = userEntity;
 	}
 
 	public long getReservationNumber() {
@@ -69,11 +69,11 @@ public class Reservation {
 		this.endDate = endDate;
 	}
 
-	public User getUser() {
+	public UserEntity getUser() {
 		return user;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setUser(UserEntity userEntity) {
+		this.user = userEntity;
 	}
 }

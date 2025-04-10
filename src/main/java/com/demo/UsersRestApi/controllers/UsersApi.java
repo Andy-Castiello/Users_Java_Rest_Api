@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.demo.UsersRestApi.model.User;
+import com.demo.UsersRestApi.model.UserEntity;
 import com.demo.UsersRestApi.service.UserService;
 
 @RestController
@@ -23,20 +23,20 @@ public class UsersApi {
 	UserService userService;
 
 	@GetMapping("/all")
-	public ArrayList<User> getAllUsers() {
+	public ArrayList<UserEntity> getAllUsers() {
 
 		return userService.getAllUser();
 	}
 
 	@GetMapping("/find/{id}")
-	public Optional<User> getUserById(@PathVariable("id") long id) {
+	public Optional<UserEntity> getUserById(@PathVariable("id") long id) {
 		return userService.getUserById(id);
 	}
 
 	@PostMapping("/save")
-	public User saveUser(@RequestBody User user) {
+	public UserEntity saveUser(@RequestBody UserEntity userEntity) {
 
-		return userService.saveUser(user);
+		return userService.saveUser(userEntity);
 	}
 
 	@DeleteMapping("/delete/{id}")
